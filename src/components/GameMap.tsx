@@ -136,8 +136,9 @@ export function GameMap({ currentLevel, onReachTarget, avatar, scenarios, isMaxi
   }
 
   return (
-    <div 
-      className={`relative mx-auto ${isMaximized ? 'mb-4' : 'w-full mb-8'} border-[6px] border-[#2e4a1b] rounded-2xl p-0.5 shadow-[inset_0_0_20px_rgba(0,0,0,0.5)] bg-[#4a752c] overflow-hidden shrink-0`}
+    <div className="flex flex-col items-center w-full">
+      <div 
+        className={`relative mx-auto ${isMaximized ? 'mb-4' : 'w-full mb-8'} border-[6px] border-[#2e4a1b] rounded-2xl p-0.5 shadow-[inset_0_0_20px_rgba(0,0,0,0.5)] bg-[#4a752c] overflow-hidden shrink-0`}
       style={{
         aspectRatio: '1000 / 600',
         width: isMaximized ? '100%' : undefined,
@@ -223,51 +224,6 @@ export function GameMap({ currentLevel, onReachTarget, avatar, scenarios, isMaxi
         </div>
       </div>
 
-      {/* Mobile D-Pad Controls */}
-      <div className="absolute bottom-6 left-6 z-40 md:hidden flex flex-col items-center gap-2 opacity-80 active:opacity-100">
-        <button 
-          onPointerDown={(e) => { e.preventDefault(); keys.current['ArrowUp'] = true; }}
-          onPointerUp={(e) => { e.preventDefault(); keys.current['ArrowUp'] = false; }}
-          onPointerLeave={(e) => { e.preventDefault(); keys.current['ArrowUp'] = false; }}
-          onContextMenu={(e) => e.preventDefault()}
-          className="bg-black/60 backdrop-blur-md text-white p-4 rounded-2xl border-2 border-white/20 active:bg-amber-500 active:border-amber-400 active:scale-95 transition-all select-none touch-none shadow-lg"
-          style={{ WebkitTapHighlightColor: 'transparent' }}
-        >
-          <ChevronUp size={28} strokeWidth={3} />
-        </button>
-        <div className="flex gap-2">
-          <button 
-            onPointerDown={(e) => { e.preventDefault(); keys.current['ArrowLeft'] = true; }}
-            onPointerUp={(e) => { e.preventDefault(); keys.current['ArrowLeft'] = false; }}
-            onPointerLeave={(e) => { e.preventDefault(); keys.current['ArrowLeft'] = false; }}
-            onContextMenu={(e) => e.preventDefault()}
-            className="bg-black/60 backdrop-blur-md text-white p-4 rounded-2xl border-2 border-white/20 active:bg-amber-500 active:border-amber-400 active:scale-95 transition-all select-none touch-none shadow-lg"
-            style={{ WebkitTapHighlightColor: 'transparent' }}
-          >
-            <ChevronLeft size={28} strokeWidth={3} />
-          </button>
-          <button 
-            onPointerDown={(e) => { e.preventDefault(); keys.current['ArrowDown'] = true; }}
-            onPointerUp={(e) => { e.preventDefault(); keys.current['ArrowDown'] = false; }}
-            onPointerLeave={(e) => { e.preventDefault(); keys.current['ArrowDown'] = false; }}
-            onContextMenu={(e) => e.preventDefault()}
-            className="bg-black/60 backdrop-blur-md text-white p-4 rounded-2xl border-2 border-white/20 active:bg-amber-500 active:border-amber-400 active:scale-95 transition-all select-none touch-none shadow-lg"
-            style={{ WebkitTapHighlightColor: 'transparent' }}
-          >
-            <ChevronDown size={28} strokeWidth={3} />
-          </button>
-          <button 
-            onPointerDown={(e) => { e.preventDefault(); keys.current['ArrowRight'] = true; }}
-            onPointerUp={(e) => { e.preventDefault(); keys.current['ArrowRight'] = false; }}
-            onPointerLeave={(e) => { e.preventDefault(); keys.current['ArrowRight'] = false; }}
-            onContextMenu={(e) => e.preventDefault()}
-            className="bg-black/60 backdrop-blur-md text-white p-4 rounded-2xl border-2 border-white/20 active:bg-amber-500 active:border-amber-400 active:scale-95 transition-all select-none touch-none shadow-lg"
-            style={{ WebkitTapHighlightColor: 'transparent' }}
-          >
-            <ChevronRight size={28} strokeWidth={3} />
-          </button>
-        </div>
-      </div>
 
       {/* Interaction Prompt Overlay */}
       <AnimatePresence>
@@ -291,6 +247,53 @@ export function GameMap({ currentLevel, onReachTarget, avatar, scenarios, isMaxi
       </AnimatePresence>
 
     </div>
+      </div>
+
+      {/* Mobile D-Pad Controls - Now positioned below the map */}
+      <div className="md:hidden flex flex-col items-center gap-2 mt-2 mb-8 opacity-90 active:opacity-100">
+        <button 
+          onPointerDown={(e) => { e.preventDefault(); keys.current['ArrowUp'] = true; }}
+          onPointerUp={(e) => { e.preventDefault(); keys.current['ArrowUp'] = false; }}
+          onPointerLeave={(e) => { e.preventDefault(); keys.current['ArrowUp'] = false; }}
+          onContextMenu={(e) => e.preventDefault()}
+          className="bg-slate-800 text-white p-4 rounded-2xl border-2 border-slate-600 active:bg-amber-500 active:border-amber-400 active:scale-95 transition-all select-none touch-none shadow-lg"
+          style={{ WebkitTapHighlightColor: 'transparent' }}
+        >
+          <ChevronUp size={28} strokeWidth={3} />
+        </button>
+        <div className="flex gap-2">
+          <button 
+            onPointerDown={(e) => { e.preventDefault(); keys.current['ArrowLeft'] = true; }}
+            onPointerUp={(e) => { e.preventDefault(); keys.current['ArrowLeft'] = false; }}
+            onPointerLeave={(e) => { e.preventDefault(); keys.current['ArrowLeft'] = false; }}
+            onContextMenu={(e) => e.preventDefault()}
+            className="bg-slate-800 text-white p-4 rounded-2xl border-2 border-slate-600 active:bg-amber-500 active:border-amber-400 active:scale-95 transition-all select-none touch-none shadow-lg"
+            style={{ WebkitTapHighlightColor: 'transparent' }}
+          >
+            <ChevronLeft size={28} strokeWidth={3} />
+          </button>
+          <button 
+            onPointerDown={(e) => { e.preventDefault(); keys.current['ArrowDown'] = true; }}
+            onPointerUp={(e) => { e.preventDefault(); keys.current['ArrowDown'] = false; }}
+            onPointerLeave={(e) => { e.preventDefault(); keys.current['ArrowDown'] = false; }}
+            onContextMenu={(e) => e.preventDefault()}
+            className="bg-slate-800 text-white p-4 rounded-2xl border-2 border-slate-600 active:bg-amber-500 active:border-amber-400 active:scale-95 transition-all select-none touch-none shadow-lg"
+            style={{ WebkitTapHighlightColor: 'transparent' }}
+          >
+            <ChevronDown size={28} strokeWidth={3} />
+          </button>
+          <button 
+            onPointerDown={(e) => { e.preventDefault(); keys.current['ArrowRight'] = true; }}
+            onPointerUp={(e) => { e.preventDefault(); keys.current['ArrowRight'] = false; }}
+            onPointerLeave={(e) => { e.preventDefault(); keys.current['ArrowRight'] = false; }}
+            onContextMenu={(e) => e.preventDefault()}
+            className="bg-slate-800 text-white p-4 rounded-2xl border-2 border-slate-600 active:bg-amber-500 active:border-amber-400 active:scale-95 transition-all select-none touch-none shadow-lg"
+            style={{ WebkitTapHighlightColor: 'transparent' }}
+          >
+            <ChevronRight size={28} strokeWidth={3} />
+          </button>
+        </div>
+      </div>
     </div>
   );
 }
