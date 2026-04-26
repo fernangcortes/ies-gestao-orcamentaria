@@ -158,12 +158,6 @@ export function GameMap({ currentLevel, onReachTarget, avatar, scenarios, isMaxi
       <div className="absolute inset-0 opacity-30 mix-blend-multiply" style={{ backgroundImage: 'radial-gradient(#3a6020 2px, transparent 2px)', backgroundSize: '16px 16px' }}></div>
       <div className="absolute inset-0 opacity-10 mix-blend-multiply" style={{ backgroundImage: 'radial-gradient(#2a4010 3px, transparent 3px)', backgroundSize: '32px 32px', backgroundPosition: '8px 8px' }}></div>
       
-      <div className="absolute top-4 left-0 right-0 z-10 flex justify-center pointer-events-none">
-        <div className="bg-black/90 text-white/90 text-xs md:text-sm uppercase font-bold tracking-widest px-6 py-3 rounded-full border border-white/20 shadow-lg backdrop-blur-sm animate-pulse">
-           Mova no mapa (WASD ou Setas) até o seu objetivo
-        </div>
-      </div>
-
       {/* Buildings / POIs */}
       {scenarios.map((scenario) => {
         const isTarget = currentLevel === scenario.id;
@@ -225,28 +219,31 @@ export function GameMap({ currentLevel, onReachTarget, avatar, scenarios, isMaxi
       </div>
 
 
-      {/* Interaction Prompt Overlay */}
+      {/* Subtle Interaction Prompt */}
       <AnimatePresence>
         {isNearTarget && targetScenario && (
           <motion.div 
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, scale: 0.95 }}
-            className="absolute bottom-8 left-1/2 transform -translate-x-1/2 bg-black/90 border-2 border-amber-500 rounded-xl p-4 shadow-2xl z-50 flex flex-col items-center backdrop-blur-md min-w-[250px]"
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0, scale: 0.9 }}
+            className="absolute bottom-6 left-1/2 transform -translate-x-1/2 z-50"
           >
-            <h3 className="text-amber-400 font-bold text-lg mb-1">{targetScenario.buildingName}</h3>
-            <p className="text-white text-sm mb-3">Você chegou ao seu destino.</p>
             <button 
               onClick={onReachTarget}
-              className="bg-amber-500 hover:bg-amber-400 text-amber-950 font-black px-6 py-2 rounded shadow-[0_4px_0_#b45309] hover:translate-y-[2px] hover:shadow-[0_2px_0_#b45309] transition-all uppercase tracking-wider w-full"
+              className="bg-amber-500/90 hover:bg-amber-400 text-amber-950 font-bold px-4 py-1.5 rounded-full shadow-lg border border-amber-400 transition-all text-[10px] md:text-xs uppercase tracking-widest flex items-center gap-1.5 animate-bounce backdrop-blur-sm"
             >
-               Acessar Local (ENTER)
+               <span>Entrar (Enter)</span>
             </button>
           </motion.div>
         )}
       </AnimatePresence>
 
     </div>
+      </div>
+
+      {/* Desktop subtle instruction */}
+      <div className="hidden md:block mt-3 text-[#a8e6cf]/40 font-bold text-[10px] uppercase tracking-[0.2em] text-center mb-4">
+        Use WASD ou Setas para mover
       </div>
 
       {/* Mobile D-Pad Controls - Now positioned below the map */}
