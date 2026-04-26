@@ -2,7 +2,7 @@ import React, { useEffect, useState, useRef } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { Trees, MapPin, PackageOpen, MonitorCog, PiggyBank, BriefcaseBusiness, FlaskConical, Zap, HardHat, ScrollText, Tent, Landmark } from 'lucide-react';
 import { Scenario } from '../data/game';
-import mapBackgroundImage from '../fundo-jogo-orcamento.png';
+import mapBackgroundImage from '../fundo-jogo-orcamento.webp';
 
 interface GameMapProps {
   currentLevel: number;
