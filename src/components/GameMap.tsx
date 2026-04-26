@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useRef } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { Trees, MapPin, PackageOpen, MonitorCog, PiggyBank, BriefcaseBusiness, FlaskConical, Zap, HardHat, ScrollText, Tent, Landmark } from 'lucide-react';
+import { Trees, MapPin, PackageOpen, MonitorCog, PiggyBank, BriefcaseBusiness, FlaskConical, Zap, HardHat, ScrollText, Tent, Landmark, ChevronUp, ChevronDown, ChevronLeft, ChevronRight } from 'lucide-react';
 import { Scenario } from '../data/game';
 import mapBackgroundImage from '../fundo-jogo-orcamento.webp';
 
@@ -220,6 +220,52 @@ export function GameMap({ currentLevel, onReachTarget, avatar, scenarios, isMaxi
                {avatar}
             </motion.div>
             <div className="absolute -bottom-2 left-1/2 -translate-x-1/2 w-8 h-3 bg-black/40 rounded-[100%] blur-[2px] z-10"></div>
+        </div>
+      </div>
+
+      {/* Mobile D-Pad Controls */}
+      <div className="absolute bottom-6 left-6 z-40 md:hidden flex flex-col items-center gap-2 opacity-80 active:opacity-100">
+        <button 
+          onPointerDown={(e) => { e.preventDefault(); keys.current['ArrowUp'] = true; }}
+          onPointerUp={(e) => { e.preventDefault(); keys.current['ArrowUp'] = false; }}
+          onPointerLeave={(e) => { e.preventDefault(); keys.current['ArrowUp'] = false; }}
+          onContextMenu={(e) => e.preventDefault()}
+          className="bg-black/60 backdrop-blur-md text-white p-4 rounded-2xl border-2 border-white/20 active:bg-amber-500 active:border-amber-400 active:scale-95 transition-all select-none touch-none shadow-lg"
+          style={{ WebkitTapHighlightColor: 'transparent' }}
+        >
+          <ChevronUp size={28} strokeWidth={3} />
+        </button>
+        <div className="flex gap-2">
+          <button 
+            onPointerDown={(e) => { e.preventDefault(); keys.current['ArrowLeft'] = true; }}
+            onPointerUp={(e) => { e.preventDefault(); keys.current['ArrowLeft'] = false; }}
+            onPointerLeave={(e) => { e.preventDefault(); keys.current['ArrowLeft'] = false; }}
+            onContextMenu={(e) => e.preventDefault()}
+            className="bg-black/60 backdrop-blur-md text-white p-4 rounded-2xl border-2 border-white/20 active:bg-amber-500 active:border-amber-400 active:scale-95 transition-all select-none touch-none shadow-lg"
+            style={{ WebkitTapHighlightColor: 'transparent' }}
+          >
+            <ChevronLeft size={28} strokeWidth={3} />
+          </button>
+          <button 
+            onPointerDown={(e) => { e.preventDefault(); keys.current['ArrowDown'] = true; }}
+            onPointerUp={(e) => { e.preventDefault(); keys.current['ArrowDown'] = false; }}
+            onPointerLeave={(e) => { e.preventDefault(); keys.current['ArrowDown'] = false; }}
+            onContextMenu={(e) => e.preventDefault()}
+            className="bg-black/60 backdrop-blur-md text-white p-4 rounded-2xl border-2 border-white/20 active:bg-amber-500 active:border-amber-400 active:scale-95 transition-all select-none touch-none shadow-lg"
+            style={{ WebkitTapHighlightColor: 'transparent' }}
+          >
+            <ChevronDown size={28} strokeWidth={3} />
+          </button>
+          <button 
+            onPointerDown={(e) => { e.preventDefault(); keys.current['ArrowRight'] = true; }}
+            onPointerUp={(e) => { e.preventDefault(); keys.current['ArrowRight'] = false; }}
+            onPointerLeave={(e) => { e.preventDefault(); keys.current['ArrowRight'] = false; }}
+            onContextMenu={(e) => e.preventDefault()}
+            className="bg-black/60 backdrop-blur-md text-white p-4 rounded-2xl border-2 border-white/20 active:bg-amber-500 active:border-amber-400 active:scale-95 transition-all select-none touch-none shadow-lg"
+            style={{ WebkitTapHighlightColor: 'transparent' }}
+          >
+            <ChevronRight size={28} strokeWidth={3} />
+          </button>
         </div>
       </div>
 
